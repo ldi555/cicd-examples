@@ -4,4 +4,4 @@ WORKDIR /app
 
 COPY ./app .
 
-ENTRY ["python", "HelloWorld.py"]
+ENTRYPOINT ["python", "HelloWorld.py"]
