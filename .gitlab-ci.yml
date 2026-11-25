@@ -16,6 +16,7 @@ default:
 
 build-image:
   stage: build
+  image: docker:27-dind
   tags:
     - ubuntu
   script:
