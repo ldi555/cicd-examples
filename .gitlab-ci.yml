@@ -6,28 +6,28 @@ variables:
   IMAGE: "helloworld:latest"
 
 default:
-  image: docker:27
   tags:
-    - ubuntu
-  services:
-    - docker:27-dind
+    - docker
   before_script:
-    - echo "hello $NAME"
+    - whoami
 
 build-image:
   only:
     - main
   stage: build
-  image: docker:27-dind
   tags:
     - ubuntu
   script:
     - echo "Building the Docker image..."
+    - docker build -t $IMAGE application/docker
 
 
 run-image:
   stage: run
   tags:
     - ubuntu
+  needs:
+    - build-image
   script:
     - echo "Running the Docker image..."
+    - docker run --name helloworld-container -d $IMAGE
