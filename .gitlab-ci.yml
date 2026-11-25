@@ -7,7 +7,7 @@ variables:
 
 default:
   tags:
-    - docker
+    - ubuntu
   before_script:
     - whoami
 
@@ -19,7 +19,7 @@ build-image:
     - ubuntu
   script:
     - echo "Building the Docker image..."
-    - docker build -t $IMAGE application/docker
+    - docker build -t $IMAGE application
 
 
 run-image:
