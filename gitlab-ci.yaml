@@ -1,0 +1,31 @@
+stages:
+  - build
+  - run
+
+variables:
+  IMAGE: "helloworld:latest"
+
+default:
+  image: docker:27
+  tags:
+    - ubuntu
+  services:
+    - docker:27-dind
+  before_script:
+    - echo "hello $NAME"
+
+build-image:
+  stage: build
+  tags:
+    - ubuntu
+  script:
+    - docker build -f application/docker/Dockerfile -t "$IMAGE" application/docker
+    - docker run --rm "$IMAGE"
+
+
+run-image:
+  stage: run
+  tags:
+    - ubuntu
+  script:
+    - echo "Running the Docker image..."
