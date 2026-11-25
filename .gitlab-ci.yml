@@ -1,4 +1,5 @@
 stages:
+  - test
   - build
   - run
 
@@ -6,9 +7,15 @@ variables:
   IMAGE: "helloworld:latest"
 
 default:
-  tags:
-    - ubuntu
   before_script:
+    - whoami
+
+test-application:
+  stage: test
+  tags:
+    - docker
+  script:
+    - echo "Testing the application..."
     - whoami
 
 build-image:
@@ -30,4 +37,4 @@ run-image:
     - build-image
   script:
     - echo "Running the Docker image..."
-    - docker run --name helloworld-container -d $IMAGE
+    - docker run --name helloworld-container $IMAGE
