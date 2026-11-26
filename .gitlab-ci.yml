@@ -37,4 +37,4 @@ run-image:
     - build-image
   script:
     - echo "Running the Docker image..."
-    - docker run --name helloworld-container $IMAGE
+    - docker run --name helloworld-container --rm $IMAGE
