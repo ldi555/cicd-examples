@@ -1,6 +1,7 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions
-version: 1.0
+vars:
+  VERSION: "1.0"
 on: [push]
 jobs:
   Execute-HelloWorld-on-Github-Runner:
