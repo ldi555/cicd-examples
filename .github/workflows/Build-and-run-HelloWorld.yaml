@@ -18,7 +18,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t my-app ${{ github.workspace }}/application
       - name: Run Docker container
-        run: docker run --name my-app-container -rm my-app
+        run: docker run --name my-app-container --rm my-app
       - name: Display container logs
         run: docker logs my-app-container
       - name: Display job status
@@ -38,7 +38,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t my-app ${{ github.workspace }}/application
       - name: Run Docker container
-        run: docker run --name my-app-container -rm my-app
+        run: docker run --name my-app-container --rm my-app
       - name: Display container logs
         run: docker logs my-app-container
       - name: Display job status
