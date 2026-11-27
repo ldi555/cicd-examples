@@ -29,7 +29,7 @@ jobs:
         run: echo "This job's status is ${{ job.status }}."
   Execute-HelloWorld-on-ec2-runner:
     runs-on: self-hosted
-    depends-on: Execute-HelloWorld-on-Github-Runner
+    needs: Execute-HelloWorld-on-Github-Runner
     steps:
       - run: echo "Hello ${{ vars.NAME }}"
       - run: whoami
