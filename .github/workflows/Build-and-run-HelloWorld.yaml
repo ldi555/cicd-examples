@@ -29,6 +29,7 @@ jobs:
         run: echo "This job's status is ${{ job.status }}."
   Execute-HelloWorld-on-ec2-runner:
     runs-on: self-hosted
+    depends-on: Execute-HelloWorld-on-Github-Runner
     steps:
       - run: echo "Hello ${{ vars.NAME }}"
       - run: whoami
@@ -42,7 +43,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t ${{ env.IMAGE }} ${{ github.workspace }}/application
       - name: Run Docker container
-        run: docker run --name ${{ env.CONTAINER_NAME }} --rm ${{ env.IMAGE }}
+        run: docker run --name ${{ env.CONTAINER_NAME }} ${{ env.IMAGE }}
       - name: Display container logs
         run: docker logs ${{ env.CONTAINER_NAME }}
       - name: Delete Docker container
