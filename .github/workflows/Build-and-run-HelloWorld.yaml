@@ -1,7 +1,7 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions
 env:
-  VERSION: "2.02"
+  VERSION: "2.03"
   IMAGE: "helloworld:latest"
   CONTAINER_NAME: "helloworld-container"
 on: [push]
