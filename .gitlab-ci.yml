@@ -2,9 +2,11 @@ stages:
   - test
   - build
   - run
+  - delete
 
 variables:
   IMAGE: "helloworld:latest"
+  CONTAINER_NAME: "helloworld-container"
 
 default:
   before_script:
@@ -16,6 +18,14 @@ test-application:
     - docker
   script:
     - echo "Testing the application..."
+    - whoami
+
+security-scan:
+  stage: test
+  tags:
+    - docker
+  script:
+    - echo "Performing security scan..."
     - whoami
 
 build-image:
@@ -30,11 +40,23 @@ build-image:
 
 
 run-image:
-  stage: run
+  stage: delete
   tags:
     - ubuntu
   needs:
     - build-image
   script:
     - echo "Running the Docker image..."
-    - docker run --name helloworld-container --rm $IMAGE
+    - docker run --name $CONTAINER_NAME $IMAGE
+    - docker logs $CONTAINER_NAME
+
+
+delete-container:
+  stage: run
+  tags:
+    - ubuntu
+  needs:
+    - build-image
+  script:
+    - echo "Removing the Docker container..."
+    - docker rm -f $CONTAINER_NAME
