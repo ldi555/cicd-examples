@@ -40,7 +40,7 @@ build-image:
 
 
 run-image:
-  stage: delete
+  stage: run
   tags:
     - ubuntu
   needs:
@@ -52,7 +52,7 @@ run-image:
 
 
 delete-container:
-  stage: run
+  stage: delete
   tags:
     - ubuntu
   needs:
