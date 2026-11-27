@@ -1,7 +1,7 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions
 env:
-  VERSION: "2.0"
+  VERSION: "2.01"
 on: [push]
 jobs:
   Execute-HelloWorld-on-Github-Runner:
@@ -18,7 +18,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t my-app ${{ github.workspace }}/application
       - name: Run Docker container
-        run: docker run --name my-app-container -d my-app
+        run: docker run --name my-app-container -rm my-app
       - name: Display container logs
         run: docker logs my-app-container
       - name: Display job status
@@ -38,7 +38,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t my-app ${{ github.workspace }}/application
       - name: Run Docker container
-        run: docker run --name my-app-container -d my-app
+        run: docker run --name my-app-container -rm my-app
       - name: Display container logs
         run: docker logs my-app-container
       - name: Display job status
